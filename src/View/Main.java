@@ -3,12 +3,32 @@ package View;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main extends javax.swing.JFrame {
-
+private int xPos; // Posisi X label
+    private Timer timer; 
     public Main() {
         initComponents();
+        setupTimer();
     }
+    private void setupTimer() {
+    timer = new Timer(10, new ActionListener() { // Delay 5 ms untuk pergerakan halus
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            xPos -= 2; // Gerakkan label ke kiri
+            if (xPos + labelNama.getWidth() < 0) { // Jika label keluar dari layar di sebelah kiri
+                xPos = getWidth(); // Reset ke posisi di sebelah kanan layar
+            }
+            labelNama.setBounds(xPos, labelNama.getY(), labelNama.getWidth(), labelNama.getHeight());
+        }
+    });
+    timer.start(); // Mulai timer
+}
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,7 +60,7 @@ public class Main extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         bKeluar = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        labelNama = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         pConten = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -393,9 +413,9 @@ public class Main extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 204, 255));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 25)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("INVENTARIS INSTITUT TEKNOLOGI MOJOSARI NGANJUK");
+        labelNama.setFont(new java.awt.Font("Segoe UI Light", 0, 25)); // NOI18N
+        labelNama.setForeground(new java.awt.Color(255, 255, 255));
+        labelNama.setText("SELAMAT DATANG DI INVENTARIS INSTITUT TEKNOLOGI MOJOSARI NGANJUK");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/cropped-Logo-2-1 (1).png"))); // NOI18N
 
@@ -404,8 +424,8 @@ public class Main extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jLabel4)
+                .addGap(87, 87, 87)
+                .addComponent(labelNama)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addContainerGap())
@@ -416,7 +436,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel4))
+                    .addComponent(labelNama))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -434,7 +454,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pConten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pConten, javax.swing.GroupLayout.DEFAULT_SIZE, 1197, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -599,7 +619,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -608,6 +627,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel labelNama;
     private javax.swing.JPanel pBarang;
     public static javax.swing.JPanel pConten;
     private javax.swing.JPanel pKategori;
