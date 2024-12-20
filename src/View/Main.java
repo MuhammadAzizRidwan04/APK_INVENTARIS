@@ -43,7 +43,7 @@ public class Main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         pConten = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Inventaris ITM");
@@ -423,8 +423,8 @@ public class Main extends javax.swing.JFrame {
         pConten.setBackground(new java.awt.Color(255, 255, 255));
         pConten.setLayout(new java.awt.BorderLayout());
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Business PROPOSAL.png"))); // NOI18N
-        pConten.add(jLabel11, java.awt.BorderLayout.CENTER);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Business PROPOSAL.png"))); // NOI18N
+        pConten.add(jLabel13, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -595,8 +595,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel bVendor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
