@@ -227,9 +227,10 @@ public class FramePeminjaman extends javax.swing.JPanel {
         FrameInputPeminjaman IPB = new FrameInputPeminjaman();
         IPB.setVisible(true);
 
-        // Menyembunyikan elemen yang tidak diperlukan
+        // eMenyembunyikan elemen yang tidak diperlukan
         IPB.btnHapus.setVisible(false);
         IPB.btnUbah.setVisible(false);
+        IPB.btnKembalikan.setVisible(false);
         IPB.txtTanggalKembali.setVisible(false);
         IPB.lblTanggalKembali.setVisible(false);
 

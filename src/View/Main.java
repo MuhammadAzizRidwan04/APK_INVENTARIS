@@ -8,14 +8,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main extends javax.swing.JFrame {
-private int xPos; // Posisi X label
-    private Timer timer; 
+
+    private int xPos; // Posisi X label
+    private Timer timer;
+    private boolean isYellow = false; // Status warna
+
     public Main() {
         initComponents();
         setupTimer();
     }
+
     private void setupTimer() {
-    timer = new Timer(10, new ActionListener() { // Delay 5 ms untuk pergerakan halus
+    // Timer untuk menggerakkan label
+    timer = new Timer(10, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             xPos -= 2; // Gerakkan label ke kiri
@@ -26,8 +31,24 @@ private int xPos; // Posisi X label
         }
     });
     timer.start(); // Mulai timer
-}
 
+    Timer colorTimer = new Timer(500, new ActionListener() {
+        private boolean isYellow = false; // Status warna
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (isYellow) {
+                labelNama.setForeground(Color.WHITE); // Kembali ke putih
+                labelLogo.setForeground(Color.WHITE); // Kembali ke putih
+            } else {
+                labelNama.setForeground(Color.YELLOW); // Ubah menjadi kuning
+                labelLogo.setForeground(Color.YELLOW); // Ubah menjadi kuning
+            }
+            isYellow = !isYellow; // Ganti status warna
+        }
+    });
+    colorTimer.start(); // Mulai timer warna
+}
     
 
     @SuppressWarnings("unchecked")
@@ -37,7 +58,7 @@ private int xPos; // Posisi X label
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelLogo = new javax.swing.JLabel();
         pVendor = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         bVendor = new javax.swing.JLabel();
@@ -75,9 +96,9 @@ private int xPos; // Posisi X label
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Logo  (1).png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("INVENTARIS ");
+        labelLogo.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        labelLogo.setForeground(new java.awt.Color(255, 255, 255));
+        labelLogo.setText("INVENTARIS ");
 
         pVendor.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -382,7 +403,7 @@ private int xPos; // Posisi X label
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(labelLogo)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(pKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
                 .addContainerGap())
@@ -392,7 +413,7 @@ private int xPos; // Posisi X label
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(labelLogo)
                     .addComponent(jLabel1))
                 .addGap(56, 56, 56)
                 .addComponent(pVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,7 +475,7 @@ private int xPos; // Posisi X label
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pConten, javax.swing.GroupLayout.DEFAULT_SIZE, 1197, Short.MAX_VALUE)
+                    .addComponent(pConten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -489,7 +510,7 @@ private int xPos; // Posisi X label
         pConten.add(new FrameVendor());
         pConten.repaint();
         pConten.revalidate();
-        pVendor.setBackground(new Color(102,204,255));
+        pVendor.setBackground(new Color(102, 204, 255));
     }//GEN-LAST:event_bVendorMouseClicked
 
     private void bKategoriMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bKategoriMouseEntered
@@ -505,7 +526,7 @@ private int xPos; // Posisi X label
         pConten.add(new FrameKategori());
         pConten.repaint();
         pConten.revalidate();
-        pKategori.setBackground(new Color(102,204,255));
+        pKategori.setBackground(new Color(102, 204, 255));
     }//GEN-LAST:event_bKategoriMouseClicked
 
     private void bBarangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBarangMouseEntered
@@ -521,7 +542,7 @@ private int xPos; // Posisi X label
         pConten.add(new FrameBarang());
         pConten.repaint();
         pConten.revalidate();
-        pBarang.setBackground(new Color(102,204,255));
+        pBarang.setBackground(new Color(102, 204, 255));
     }//GEN-LAST:event_bBarangMouseClicked
 
     private void bPeminjamMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPeminjamMouseEntered
@@ -537,7 +558,7 @@ private int xPos; // Posisi X label
         pConten.add(new FramePeminjam());
         pConten.repaint();
         pConten.revalidate();
-        pPeminjam.setBackground(new Color(102,204,255));
+        pPeminjam.setBackground(new Color(102, 204, 255));
     }//GEN-LAST:event_bPeminjamMouseClicked
 
     private void bPeminjamanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPeminjamanMouseEntered
@@ -553,7 +574,7 @@ private int xPos; // Posisi X label
         pConten.add(new FramePeminjaman());
         pConten.repaint();
         pConten.revalidate();
-        pPeminjaman.setBackground(new Color(102,204,255));
+        pPeminjaman.setBackground(new Color(102, 204, 255));
     }//GEN-LAST:event_bPeminjamanMouseClicked
 
     private void bQRMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bQRMouseEntered
@@ -569,7 +590,7 @@ private int xPos; // Posisi X label
         pConten.add(new FrameQR());
         pConten.repaint();
         pConten.revalidate();
-        pQR.setBackground(new Color(102,204,255));
+        pQR.setBackground(new Color(102, 204, 255));
     }//GEN-LAST:event_bQRMouseClicked
 
     private void bKeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bKeluarMouseEntered
@@ -581,7 +602,7 @@ private int xPos; // Posisi X label
     }//GEN-LAST:event_bKeluarMouseExited
 
     private void bKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bKeluarMouseClicked
-        pKeluar.setBackground(new Color(102,204,255));
+        pKeluar.setBackground(new Color(102, 204, 255));
         new Main().setVisible(true);
         dispose();
     }//GEN-LAST:event_bKeluarMouseClicked
@@ -617,7 +638,6 @@ private int xPos; // Posisi X label
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -627,6 +647,7 @@ private int xPos; // Posisi X label
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelNama;
     private javax.swing.JPanel pBarang;
     public static javax.swing.JPanel pConten;

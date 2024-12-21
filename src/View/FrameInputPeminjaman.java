@@ -1,5 +1,5 @@
-
 package View;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -20,7 +20,6 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class FrameInputPeminjaman extends javax.swing.JFrame {
 
-   
     public FrameInputPeminjaman() {
         initComponents();
         loadTable();
@@ -34,7 +33,7 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
         AutoCompleteDecorator.decorate(cbBarang);
         AutoCompleteDecorator.decorate(cbStatus);
     }
-    
+
     private void setTanggalWaktu() {
         // Format untuk tanggal dan jam
         SimpleDateFormat tanggalFormat = new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID"));
@@ -80,7 +79,6 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
     private int getSelectedBarangId() {
         return Integer.parseInt(cbBarang.getSelectedItem().toString().split(" - ")[0]);
     }
-    
 
     void loadTable() {
 
@@ -182,7 +180,6 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
 
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -211,6 +208,7 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 4));
 
         jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
 
@@ -373,12 +371,12 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 544, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 34, Short.MAX_VALUE)
+                    .addGap(0, 30, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 34, Short.MAX_VALUE)))
+                    .addGap(0, 30, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,7 +426,18 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
             pm.setJumlah(Integer.parseInt(txtJumlah.getText()));
             pm.setTanggal_pinjam(txtTanggalPinjam.getText());
             pm.setTanggal_kembali(txtTanggalKembali.getText());
+            String namaBarang = cbBarang.getSelectedItem().toString();
 
+            int jumlahPinjam = Integer.parseInt(txtJumlah.getText());
+
+            // Validasi stok barang (hanya untuk informasi, tidak mengurangi stok)
+            int stokTersedia = brg.getStokBarang(namaBarang);
+            if (jumlahPinjam > stokTersedia) {
+                JOptionPane.showMessageDialog(this, "Jumlah barang yang dipinjam melebihi stok tersedia!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                txtJumlah.setText(null);
+                return;
+            }
+            
             ResultSet datapeminjam = p.KonversiPeminjam();
             ResultSet databarang = brg.KonversiBarang();
 
@@ -455,7 +464,45 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        try {
+            Peminjaman pm = new Peminjaman();
+            Peminjam p = new Peminjam();
+            Barang brg = new Barang();
+            pm.setId_peminjaman(txtIDPeminjaman.getText());
+            p.setNama(cbPeminjam.getSelectedItem().toString());
+            brg.setNama_barang(cbBarang.getSelectedItem().toString());
+            pm.setStatus(cbStatus.getSelectedItem().toString());
+            pm.setJumlah(Integer.parseInt(txtJumlah.getText()));
+            pm.setTanggal_pinjam(txtTanggalPinjam.getText());
+            pm.setTanggal_kembali(txtTanggalKembali.getText());
+            String namaBarang = cbBarang.getSelectedItem().toString();
 
+            int jumlahPinjam = Integer.parseInt(txtJumlah.getText());
+
+            
+            
+            ResultSet datapeminjam = p.KonversiPeminjam();
+            ResultSet databarang = brg.KonversiBarang();
+
+            if (datapeminjam.next()) {
+                String isipeminjam = datapeminjam.getString("id_peminjam");
+                pm.setId_peminjam(isipeminjam);
+            }
+            if (databarang.next()) {
+                String isibarang = databarang.getString("id_barang");
+                pm.setId_barang(isibarang);
+            }
+            pm.ubahPeminjaman();
+        } catch (SQLException sQLException) {
+            System.out.println("data tidak masuk");
+        }
+        loadTable();
+        reset();
+        Main.pConten.removeAll();
+        Main.pConten.add(new FramePeminjaman());
+        Main.pConten.repaint();
+        Main.pConten.revalidate();
+        dispose();
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnKembalikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembalikanActionPerformed
@@ -550,7 +597,7 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnKembalikan;
+    public javax.swing.JButton btnKembalikan;
     public javax.swing.JButton btnTambah;
     public javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> cbBarang;

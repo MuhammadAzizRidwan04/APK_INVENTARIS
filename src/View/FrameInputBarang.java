@@ -194,7 +194,7 @@ public class FrameInputBarang extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Status");
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baru", "Rusak", "Lama" }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baru", "Bekas" }));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));

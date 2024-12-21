@@ -12,7 +12,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import View.FrameBarang;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputFilter.Status;
+import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import static javax.swing.text.html.HTML.Attribute.ID;
 
 public class FrameBarang extends javax.swing.JPanel {
@@ -31,6 +37,9 @@ public class FrameBarang extends javax.swing.JPanel {
         });
 
     }
+    
+    
+
 
     void loadTable() {
         DefaultTableModel model = new DefaultTableModel();
