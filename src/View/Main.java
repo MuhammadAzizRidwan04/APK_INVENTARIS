@@ -6,7 +6,9 @@ import javax.swing.UIManager;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 public class Main extends javax.swing.JFrame {
 
     private int xPos; // Posisi X label
@@ -16,6 +18,20 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setupTimer();
+        updateDateTime();
+    }
+    private void updateDateTime() {
+        // Membuat format tanggal dan waktu
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm:ss");
+        
+        // Timer untuk memperbarui label setiap detik
+        Timer timer = new Timer(1000, e -> {
+            // Mendapatkan waktu sekarang
+            Date now = new Date();
+            // Mengatur teks label dengan waktu terbaru
+            labelWaktu.setText(formatter.format(now));
+        });
+        timer.start();
     }
 
     private void setupTimer() {
@@ -80,6 +96,7 @@ public class Main extends javax.swing.JFrame {
         pKeluar = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         bKeluar = new javax.swing.JLabel();
+        labelWaktu = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         labelNama = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -387,6 +404,10 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        labelWaktu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelWaktu.setForeground(new java.awt.Color(255, 255, 255));
+        labelWaktu.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -394,19 +415,25 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pVendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                    .addComponent(pBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                    .addComponent(pPeminjam, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                    .addComponent(pPeminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                    .addComponent(pQR, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelLogo)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(pKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(6, 6, 6)
+                        .addComponent(labelWaktu)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pVendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addComponent(pBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addComponent(pPeminjam, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addComponent(pPeminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addComponent(pQR, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelLogo)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(pKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,7 +442,9 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelLogo)
                     .addComponent(jLabel1))
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelWaktu)
+                .addGap(28, 28, 28)
                 .addComponent(pVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -434,7 +463,7 @@ public class Main extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 204, 255));
 
-        labelNama.setFont(new java.awt.Font("Segoe UI Light", 0, 25)); // NOI18N
+        labelNama.setFont(new java.awt.Font("Segoe UI Light", 1, 25)); // NOI18N
         labelNama.setForeground(new java.awt.Color(255, 255, 255));
         labelNama.setText("SELAMAT DATANG DI INVENTARIS INSTITUT TEKNOLOGI MOJOSARI NGANJUK");
 
@@ -649,6 +678,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelNama;
+    private javax.swing.JLabel labelWaktu;
     private javax.swing.JPanel pBarang;
     public static javax.swing.JPanel pConten;
     private javax.swing.JPanel pKategori;

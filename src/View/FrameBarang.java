@@ -79,7 +79,7 @@ public class FrameBarang extends javax.swing.JPanel {
     private void cariBarang(String keyword) {
         // Membuat model untuk JTable
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID Barang");
+        model.addColumn("ID_Barang");
         model.addColumn("Nama Barang");
         model.addColumn("Merk");
         model.addColumn("Vendor");
