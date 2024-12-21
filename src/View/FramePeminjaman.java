@@ -117,6 +117,7 @@ public class FramePeminjaman extends javax.swing.JPanel {
         txtcaripeminjaman = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnPindahkeFrameTampilPeminjaman = new javax.swing.JButton();
+        btnSisa = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -155,6 +156,16 @@ public class FramePeminjaman extends javax.swing.JPanel {
             }
         });
 
+        btnSisa.setBackground(new java.awt.Color(204, 0, 204));
+        btnSisa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSisa.setForeground(new java.awt.Color(255, 255, 255));
+        btnSisa.setText("Sisa Barang");
+        btnSisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSisaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,6 +177,8 @@ public class FramePeminjaman extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnPindahkeFrameTampilPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnSisa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1023, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -185,7 +198,9 @@ public class FramePeminjaman extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPindahkeFrameTampilPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPindahkeFrameTampilPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSisa, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
         );
 
@@ -240,9 +255,14 @@ public class FramePeminjaman extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnPindahkeFrameTampilPeminjamanActionPerformed
 
+    private void btnSisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSisaActionPerformed
+        new FrameSisaBarang().setVisible(true);
+    }//GEN-LAST:event_btnSisaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPindahkeFrameTampilPeminjaman;
+    private javax.swing.JButton btnSisa;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

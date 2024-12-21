@@ -463,7 +463,7 @@ public class Main extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 204, 255));
 
-        labelNama.setFont(new java.awt.Font("Segoe UI Light", 1, 25)); // NOI18N
+        labelNama.setFont(new java.awt.Font("Segoe UI Light", 0, 25)); // NOI18N
         labelNama.setForeground(new java.awt.Color(255, 255, 255));
         labelNama.setText("SELAMAT DATANG DI INVENTARIS INSTITUT TEKNOLOGI MOJOSARI NGANJUK");
 
